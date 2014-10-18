@@ -6,10 +6,6 @@
         <attr name="pointEndColor" format="color" />
         <attr name="strokeColor" format="color" />
         <attr name="strokeWidth" format="dimension" />
-        <attr name="gaugeMarginLeft" format="dimension" />
-        <attr name="gaugeMarginRight" format="dimension" />
-        <attr name="gaugeMarginTop" format="dimension" />
-        <attr name="gaugeMarginBottom" format="dimension" />
         <attr name="strokeCap" format="string" />
         <attr name="startAngel" format="integer" />
         <attr name="sweepAngel" format="integer" />

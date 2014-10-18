@@ -1,7 +1,6 @@
 package pl.pawelkleczkowski.customgauge.example;
 
 import pl.pawelkleczkowski.customgauge.CustomGauge;
-import pl.pawelkleczkowski.customguage.example.R;
 import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
