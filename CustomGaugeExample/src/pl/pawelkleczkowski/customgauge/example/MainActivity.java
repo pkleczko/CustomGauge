@@ -13,6 +13,7 @@ public class MainActivity extends Activity {
 
 	private CustomGauge gauge1;
 	private CustomGauge gauge2;
+	private CustomGauge gauge3;
 
 	private Handler handler = new Handler();
 	int i;
@@ -26,9 +27,11 @@ public class MainActivity extends Activity {
 		Button button = (Button) findViewById(R.id.button);
 		gauge1 = (CustomGauge) findViewById(R.id.gauge1);
 		gauge2 = (CustomGauge) findViewById(R.id.gauge2);
+		gauge3 = (CustomGauge) findViewById(R.id.gauge3);
 		text1  = (TextView) findViewById(R.id.textView1);
 		text2  = (TextView) findViewById(R.id.textView2);
 		text1.setText(Integer.toString(gauge1.getValue()));
+		text2.setText(Integer.toString(gauge2.getValue()));
     	text2.setText(Integer.toString(gauge2.getValue()));
     	
 		button.setOnClickListener(new OnClickListener() {
@@ -44,8 +47,9 @@ public class MainActivity extends Activity {
 			                        public void run() {
 			                        	gauge1.setValue(i*10);
 			                        	gauge2.setValue(200 + i*5);
+			                        	gauge3.setValue(i);
 			                        	text1.setText(Integer.toString(gauge1.getValue()));
-			                        	text2.setText(Integer.toString(gauge2.getValue()));
+			                        	text2.setText(Integer.toString(gauge3.getValue()));
 			                        }
 			                    });
 			                    Thread.sleep(50);
