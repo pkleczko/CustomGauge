@@ -93,7 +93,12 @@
         app:strokeCap="BUTT"
         app:strokeColor="@color/md_grey_400"
         app:strokeWidth="20dp"
-        app:sweepAngel="180" 
+        app:sweepAngel="180"
+        app:dividerSize="1"
+        app:dividerColor="@color/md_yellow_500"
+        app:dividerStep="10"
+        app:dividerDrawFirst="false"
+        app:dividerDrawLast="true"
         />
 
     <TextView

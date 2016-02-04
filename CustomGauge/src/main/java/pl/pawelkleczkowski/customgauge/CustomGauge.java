@@ -32,10 +32,15 @@ public class CustomGauge extends View {
     private float mRectRight;
     private float mRectBottom;
     private int mPoint;
-    private int mPointColor;
     private int mPointSize;
     private int mPointStartColor;
     private int mPointEndColor;
+    private int mDividerColor;
+    private int mDividerSize;
+    private int mDividerStepAngel;
+    private int mDividersCount;
+    private boolean mDividerDrawFirst;
+    private boolean mDividerDrawLast;
 
     public CustomGauge(Context context) {
         super(context);
@@ -59,12 +64,26 @@ public class CustomGauge extends View {
         mEndValue = a.getInt(R.styleable.CustomGauge_endValue, 1000);
 
         // pointer size and color
-        mPointSize = a.getColor(R.styleable.CustomGauge_pointSize, 0);
+        mPointSize = a.getInt(R.styleable.CustomGauge_pointSize, 0);
         mPointStartColor = a.getColor(R.styleable.CustomGauge_pointStartColor, ContextCompat.getColor(context, android.R.color.white));
         mPointEndColor = a.getColor(R.styleable.CustomGauge_pointEndColor, ContextCompat.getColor(context, android.R.color.white));
 
+        // divider options
+        int dividerSize = a.getInt(R.styleable.CustomGauge_dividerSize, 0);
+        mDividerColor = a.getColor(R.styleable.CustomGauge_dividerColor, ContextCompat.getColor(context, android.R.color.white));
+        int dividerStep = a.getInt(R.styleable.CustomGauge_dividerStep, 0);
+        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_dividerDrawFirst, true);
+        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_dividerDrawLast, true);
+
         // calculating one point sweep
         mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));
+
+        // calculating divider step
+        if (dividerSize > 0) {
+            mDividerSize = mSweepAngel / (Math.abs(mEndValue - mStartValue) / dividerSize);
+            mDividersCount = 100 / dividerStep;
+            mDividerStepAngel = mSweepAngel / mDividersCount;
+        }
         a.recycle();
         init();
     }
@@ -127,6 +146,15 @@ public class CustomGauge extends View {
                 canvas.drawArc(mRect, mStartAngel, mPoint - mStartAngel, false, mPaint);
         }
 
+        if (mDividerSize > 0) {
+            mPaint.setColor(mDividerColor);
+            mPaint.setShader(null);
+            int i = mDividerDrawFirst ? 0 : 1;
+            int max = mDividerDrawLast ? mDividersCount + 1 : mDividersCount;
+            for (; i < max; i++) {
+                canvas.drawArc(mRect, mStartAngel + i*mDividerStepAngel, mDividerSize, false, mPaint);
+            }
+        }
 
     }
 

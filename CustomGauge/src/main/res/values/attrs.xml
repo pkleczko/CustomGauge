@@ -11,5 +11,10 @@
         <attr name="sweepAngel" format="integer" />
         <attr name="startValue" format="integer" />
         <attr name="endValue" format="integer" />
+        <attr name="dividerSize" format="integer" />
+        <attr name="dividerColor" format="color" />
+        <attr name="dividerStep" format="integer" />
+        <attr name="dividerDrawFirst" format="boolean" />
+        <attr name="dividerDrawLast" format="boolean" />
     </declare-styleable>
 </resources>

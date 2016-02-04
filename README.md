@@ -3,7 +3,7 @@ CustomGauge
 
 Simple gauge view
 
-<img style="float: right" src="example.jpg" title="CustomGauge Example">
+<img style="float: right" src="example.png" title="CustomGauge Example">
 
 
 &nbsp;
@@ -26,6 +26,7 @@ Simple gauge view
 ### Attributes
 
 Available view attributes:
+
  * startAngel (left start angel in degrees) - please be informed that gauge is drawn as an arc from startAngel (where to start) with sweepAngel (how many degrees arc is); what is more it's clockwise (right - 0, bottom - 90, left - 180, top - 270 degrees); if for example you want full circle start on 90 with 360 sweepAngel
  * sweepAngel - as described above
  * startValue - scale start value
@@ -33,9 +34,15 @@ Available view attributes:
  * strokeWidth - stroke width
  * strokeColor - resource color (cannot be selector)
  * strokeCap - style of circle stroke (BUTT - straight, ROUND - rounded)
- * pointSize - defined for pointer drawn on current value (upper example) - tells how wide pointer should be; if not set pointer is drawn from start value to current value (like lower example)
- * pointStartColor - used for gradient pointer (lower example)
- * pointEndColor - used for gradient pointer (lower example)
+ * pointSize - defined for pointer drawn on current value (first example) - tells how wide pointer should be; if not set pointer is drawn from start value to current value (like second example)
+ * pointStartColor - used for gradient pointer (second example)
+ * pointEndColor - used for gradient pointer (second example)
+ * dividerSize - size of divider related to values; if declared dividers will be drawn(!); e.g. if your start value is 50 and end value is 120 dividerSize set to 2 means that divider will have 1/35 of gauge total width - in other words it will have size of 2 points of gauge scale
+ * dividerStep - tells how often dividers will be drawn; it's in percentage values(!); e.g. if you want to have dividers drawn each 20% of scale just set it to 20 and you will have 6 dividers drawn (with first and last)
+ * dividerColor - color of divider
+ * dividerDrawFirst - whether to draw first divider or no
+ * dividerDrawLast - whether to draw last divider or no
+
 
 
 ### Example
