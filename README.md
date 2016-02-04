@@ -10,7 +10,16 @@ Simple gauge view
 
 ### Installation
 
- * Import "CustomGauge" as a library into your project
+ * Add the following to your <code>build.gradle</code>:
+
+
+<div class="highlight highlight-source-groovy-gradle"><pre><span class="pl-en">repositories</span> {
+    jcenter()
+}
+
+<span class="pl-en">dependencies</span> {
+    compile <span class="pl-s"><span class="pl-pds">'</span>pl.pawelkleczkowski.customgauge:CustomGauge:1.0.1<span class="pl-pds">'</span></span>
+}</pre></div>
  * Add "pl.pawelkleczkowski.customgauge.CustomGauge" view in your layout (example below)
  * Find CustomGauge view in your activity and use methods "setValue()" and "getValue()" to manage view
 
@@ -72,3 +81,9 @@ Available view attributes:
         gauge:strokeColor="@color/Gray"
         gauge:strokeWidth="10dp"
         gauge:sweepAngel="270" />
+
+&nbsp;
+
+### License
+
+GNU General Public License, version 2
