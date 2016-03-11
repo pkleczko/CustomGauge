@@ -51,29 +51,29 @@ public class CustomGauge extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomGauge, 0, 0);
 
         // stroke style
-        mStrokeWidth = a.getDimension(R.styleable.CustomGauge_strokeWidth, 10);
-        mStrokeColor = a.getColor(R.styleable.CustomGauge_strokeColor, ContextCompat.getColor(context, android.R.color.darker_gray));
-        mStrokeCap = a.getString(R.styleable.CustomGauge_strokeCap);
+        mStrokeWidth = a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10);
+        mStrokeColor = a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+        mStrokeCap = a.getString(R.styleable.CustomGauge_gaugeStrokeCap);
 
         // angel start and sweep (opposite direction 0, 270, 180, 90)
-        mStartAngel = a.getInt(R.styleable.CustomGauge_startAngel, 0);
-        mSweepAngel = a.getInt(R.styleable.CustomGauge_sweepAngel, 360);
+        mStartAngel = a.getInt(R.styleable.CustomGauge_gaugeStartAngel, 0);
+        mSweepAngel = a.getInt(R.styleable.CustomGauge_gaugeSweepAngel, 360);
 
         // scale (from mStartValue to mEndValue)
-        mStartValue = a.getInt(R.styleable.CustomGauge_startValue, 0);
-        mEndValue = a.getInt(R.styleable.CustomGauge_endValue, 1000);
+        mStartValue = a.getInt(R.styleable.CustomGauge_gaugeStartValue, 0);
+        mEndValue = a.getInt(R.styleable.CustomGauge_gaugeEndValue, 1000);
 
         // pointer size and color
-        mPointSize = a.getInt(R.styleable.CustomGauge_pointSize, 0);
-        mPointStartColor = a.getColor(R.styleable.CustomGauge_pointStartColor, ContextCompat.getColor(context, android.R.color.white));
-        mPointEndColor = a.getColor(R.styleable.CustomGauge_pointEndColor, ContextCompat.getColor(context, android.R.color.white));
+        mPointSize = a.getInt(R.styleable.CustomGauge_gaugePointSize, 0);
+        mPointStartColor = a.getColor(R.styleable.CustomGauge_gaugePointStartColor, ContextCompat.getColor(context, android.R.color.white));
+        mPointEndColor = a.getColor(R.styleable.CustomGauge_gaugePointEndColor, ContextCompat.getColor(context, android.R.color.white));
 
         // divider options
-        int dividerSize = a.getInt(R.styleable.CustomGauge_dividerSize, 0);
-        mDividerColor = a.getColor(R.styleable.CustomGauge_dividerColor, ContextCompat.getColor(context, android.R.color.white));
-        int dividerStep = a.getInt(R.styleable.CustomGauge_dividerStep, 0);
-        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_dividerDrawFirst, true);
-        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_dividerDrawLast, true);
+        int dividerSize = a.getInt(R.styleable.CustomGauge_gaugeDividerSize, 0);
+        mDividerColor = a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white));
+        int dividerStep = a.getInt(R.styleable.CustomGauge_gaugeDividerStep, 0);
+        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true);
+        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true);
 
         // calculating one point sweep
         mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));

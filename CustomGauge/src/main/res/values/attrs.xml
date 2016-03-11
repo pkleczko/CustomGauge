@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CustomGauge">
-        <attr name="pointSize" format="integer" />
-        <attr name="pointStartColor" format="color" />
-        <attr name="pointEndColor" format="color" />
-        <attr name="strokeColor" format="color" />
-        <attr name="strokeWidth" format="dimension" />
-        <attr name="strokeCap" format="string" />
-        <attr name="startAngel" format="integer" />
-        <attr name="sweepAngel" format="integer" />
-        <attr name="startValue" format="integer" />
-        <attr name="endValue" format="integer" />
-        <attr name="dividerSize" format="integer" />
-        <attr name="dividerColor" format="color" />
-        <attr name="dividerStep" format="integer" />
-        <attr name="dividerDrawFirst" format="boolean" />
-        <attr name="dividerDrawLast" format="boolean" />
+        <attr name="gaugePointSize" format="integer" />
+        <attr name="gaugePointStartColor" format="color" />
+        <attr name="gaugePointEndColor" format="color" />
+        <attr name="gaugeStrokeColor" format="color" />
+        <attr name="gaugeStrokeWidth" format="dimension" />
+        <attr name="gaugeStrokeCap" format="string" />
+        <attr name="gaugeStartAngel" format="integer" />
+        <attr name="gaugeSweepAngel" format="integer" />
+        <attr name="gaugeStartValue" format="integer" />
+        <attr name="gaugeEndValue" format="integer" />
+        <attr name="gaugeDividerSize" format="integer" />
+        <attr name="gaugeDividerColor" format="color" />
+        <attr name="gaugeDividerStep" format="integer" />
+        <attr name="gaugeDividerDrawFirst" format="boolean" />
+        <attr name="gaugeDividerDrawLast" format="boolean" />
     </declare-styleable>
 </resources>
