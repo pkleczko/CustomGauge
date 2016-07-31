@@ -27,10 +27,6 @@ public class CustomGauge extends View {
     private int mEndValue;
     private int mValue;
     private double mPointAngel;
-    private float mRectLeft;
-    private float mRectTop;
-    private float mRectRight;
-    private float mRectBottom;
     private int mPoint;
     private int mPointSize;
     private int mPointStartColor;
@@ -51,29 +47,29 @@ public class CustomGauge extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomGauge, 0, 0);
 
         // stroke style
-        mStrokeWidth = a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10);
-        mStrokeColor = a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray));
-        mStrokeCap = a.getString(R.styleable.CustomGauge_gaugeStrokeCap);
+        setStrokeWidth(a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10));
+        setStrokeColor(a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray)));
+        setStrokeCap(a.getString(R.styleable.CustomGauge_gaugeStrokeCap));
 
         // angel start and sweep (opposite direction 0, 270, 180, 90)
-        mStartAngel = a.getInt(R.styleable.CustomGauge_gaugeStartAngel, 0);
-        mSweepAngel = a.getInt(R.styleable.CustomGauge_gaugeSweepAngel, 360);
+        setStartAngel(a.getInt(R.styleable.CustomGauge_gaugeStartAngel, 0));
+        setSweepAngel(a.getInt(R.styleable.CustomGauge_gaugeSweepAngel, 360));
 
         // scale (from mStartValue to mEndValue)
-        mStartValue = a.getInt(R.styleable.CustomGauge_gaugeStartValue, 0);
-        mEndValue = a.getInt(R.styleable.CustomGauge_gaugeEndValue, 1000);
+        setStartValue(a.getInt(R.styleable.CustomGauge_gaugeStartValue, 0));
+        setEndValue(a.getInt(R.styleable.CustomGauge_gaugeEndValue, 1000));
 
         // pointer size and color
-        mPointSize = a.getInt(R.styleable.CustomGauge_gaugePointSize, 0);
-        mPointStartColor = a.getColor(R.styleable.CustomGauge_gaugePointStartColor, ContextCompat.getColor(context, android.R.color.white));
-        mPointEndColor = a.getColor(R.styleable.CustomGauge_gaugePointEndColor, ContextCompat.getColor(context, android.R.color.white));
+        setPointSize(a.getInt(R.styleable.CustomGauge_gaugePointSize, 0));
+        setPointStartColor(a.getColor(R.styleable.CustomGauge_gaugePointStartColor, ContextCompat.getColor(context, android.R.color.white)));
+        setPointEndColor(a.getColor(R.styleable.CustomGauge_gaugePointEndColor, ContextCompat.getColor(context, android.R.color.white)));
 
         // divider options
         int dividerSize = a.getInt(R.styleable.CustomGauge_gaugeDividerSize, 0);
-        mDividerColor = a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white));
+        setDividerColor(a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white)));
         int dividerStep = a.getInt(R.styleable.CustomGauge_gaugeDividerStep, 0);
-        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true);
-        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true);
+        setDividerDrawFirst(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true));
+        setDividerDrawLast(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true));
 
         // calculating one point sweep
         mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));
@@ -119,12 +115,12 @@ public class CustomGauge extends View {
         float height = getHeight() - (paddingTop+paddingBottom);
         float radius = (width > height ? width/2 : height/2);
 
-        mRectLeft = width/2 - radius + paddingLeft;
-        mRectTop = height/2 - radius + paddingTop;
-        mRectRight = width/2 - radius + paddingLeft + width;
-        mRectBottom = height/2 - radius + paddingTop + height;
+        float rectLeft = width/2 - radius + paddingLeft;
+        float rectTop = height/2 - radius + paddingTop;
+        float rectRight = width/2 - radius + paddingLeft + width;
+        float rectBottom = height/2 - radius + paddingTop + height;
 
-        mRect.set(mRectLeft, mRectTop, mRectRight, mRectBottom);
+        mRect.set(rectLeft, rectTop, rectRight, rectBottom);
 
         mPaint.setColor(mStrokeColor);
         mPaint.setShader(null);
@@ -167,4 +163,122 @@ public class CustomGauge extends View {
     public int getValue() {
         return mValue;
     }
+
+    @SuppressWarnings("unused")
+    public float getStrokeWidth() {
+        return mStrokeWidth;
+    }
+
+    public void setStrokeWidth(float strokeWidth) {
+        mStrokeWidth = strokeWidth;
+    }
+
+    @SuppressWarnings("unused")
+    public int getStrokeColor() {
+        return mStrokeColor;
+    }
+
+    public void setStrokeColor(int strokeColor) {
+        mStrokeColor = strokeColor;
+    }
+
+    @SuppressWarnings("unused")
+    public String getStrokeCap() {
+        return mStrokeCap;
+    }
+
+    public void setStrokeCap(String strokeCap) {
+        mStrokeCap = strokeCap;
+    }
+
+    @SuppressWarnings("unused")
+    public int getStartAngel() {
+        return mStartAngel;
+    }
+
+    public void setStartAngel(int startAngel) {
+        mStartAngel = startAngel;
+    }
+
+    @SuppressWarnings("unused")
+    public int getSweepAngel() {
+        return mSweepAngel;
+    }
+
+    public void setSweepAngel(int sweepAngel) {
+        mSweepAngel = sweepAngel;
+    }
+
+    @SuppressWarnings("unused")
+    public int getStartValue() {
+        return mStartValue;
+    }
+
+    public void setStartValue(int startValue) {
+        mStartValue = startValue;
+    }
+
+    @SuppressWarnings("unused")
+    public int getEndValue() {
+        return mEndValue;
+    }
+
+    public void setEndValue(int endValue) {
+        mEndValue = endValue;
+    }
+
+    @SuppressWarnings("unused")
+    public int getPointSize() {
+        return mPointSize;
+    }
+
+    public void setPointSize(int pointSize) {
+        mPointSize = pointSize;
+    }
+
+    @SuppressWarnings("unused")
+    public int getPointStartColor() {
+        return mPointStartColor;
+    }
+
+    public void setPointStartColor(int pointStartColor) {
+        mPointStartColor = pointStartColor;
+    }
+
+    @SuppressWarnings("unused")
+    public int getPointEndColor() {
+        return mPointEndColor;
+    }
+
+    public void setPointEndColor(int pointEndColor) {
+        mPointEndColor = pointEndColor;
+    }
+
+    @SuppressWarnings("unused")
+    public int getDividerColor() {
+        return mDividerColor;
+    }
+
+    public void setDividerColor(int dividerColor) {
+        mDividerColor = dividerColor;
+    }
+
+    @SuppressWarnings("unused")
+    public boolean isDividerDrawFirst() {
+        return mDividerDrawFirst;
+    }
+
+    public void setDividerDrawFirst(boolean dividerDrawFirst) {
+        mDividerDrawFirst = dividerDrawFirst;
+    }
+
+    @SuppressWarnings("unused")
+    public boolean isDividerDrawLast() {
+        return mDividerDrawLast;
+    }
+
+    public void setDividerDrawLast(boolean dividerDrawLast) {
+        mDividerDrawLast = dividerDrawLast;
+    }
+
 }
