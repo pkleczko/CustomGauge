@@ -68,8 +68,8 @@ public class CustomGauge extends View {
         int dividerSize = a.getInt(R.styleable.CustomGauge_gaugeDividerSize, 0);
         mDividerColor = a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white));
         int dividerStep = a.getInt(R.styleable.CustomGauge_gaugeDividerStep, 0);
-        setDividerDrawFirst(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true));
-        setDividerDrawLast(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true));
+        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true);
+        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true);
 
         // calculating one point sweep
         mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));
@@ -207,8 +207,6 @@ public class CustomGauge extends View {
 
     public void setSweepAngel(int sweepAngel) {
         mSweepAngel = sweepAngel;
-        mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));
-        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -277,8 +275,10 @@ public class CustomGauge extends View {
         return mDividerDrawFirst;
     }
 
+    @SuppressWarnings("unused")
     public void setDividerDrawFirst(boolean dividerDrawFirst) {
         mDividerDrawFirst = dividerDrawFirst;
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -286,8 +286,10 @@ public class CustomGauge extends View {
         return mDividerDrawLast;
     }
 
+    @SuppressWarnings("unused")
     public void setDividerDrawLast(boolean dividerDrawLast) {
         mDividerDrawLast = dividerDrawLast;
+        invalidate();
     }
 
 }
