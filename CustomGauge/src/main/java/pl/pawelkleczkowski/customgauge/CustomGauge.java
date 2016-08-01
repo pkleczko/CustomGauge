@@ -47,9 +47,9 @@ public class CustomGauge extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomGauge, 0, 0);
 
         // stroke style
-        setStrokeWidth(a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10));
-        setStrokeColor(a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray)));
-        setStrokeCap(a.getString(R.styleable.CustomGauge_gaugeStrokeCap));
+        mStrokeWidth = a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10);
+        mStrokeColor = a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+        mStrokeCap = a.getString(R.styleable.CustomGauge_gaugeStrokeCap);
 
         // angle start and sweep (opposite direction 0, 270, 180, 90)
         setStartAngle(a.getInt(R.styleable.CustomGauge_gaugeStartAngle, 0));
@@ -60,16 +60,16 @@ public class CustomGauge extends View {
         setEndValue(a.getInt(R.styleable.CustomGauge_gaugeEndValue, 1000));
 
         // pointer size and color
-        setPointSize(a.getInt(R.styleable.CustomGauge_gaugePointSize, 0));
-        setPointStartColor(a.getColor(R.styleable.CustomGauge_gaugePointStartColor, ContextCompat.getColor(context, android.R.color.white)));
-        setPointEndColor(a.getColor(R.styleable.CustomGauge_gaugePointEndColor, ContextCompat.getColor(context, android.R.color.white)));
+        mPointSize = a.getInt(R.styleable.CustomGauge_gaugePointSize, 0);
+        mPointStartColor = a.getColor(R.styleable.CustomGauge_gaugePointStartColor, ContextCompat.getColor(context, android.R.color.white));
+        mPointEndColor = a.getColor(R.styleable.CustomGauge_gaugePointEndColor, ContextCompat.getColor(context, android.R.color.white));
 
         // divider options
         int dividerSize = a.getInt(R.styleable.CustomGauge_gaugeDividerSize, 0);
-        setDividerColor(a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white)));
+        mDividerColor = a.getColor(R.styleable.CustomGauge_gaugeDividerColor, ContextCompat.getColor(context, android.R.color.white));
         int dividerStep = a.getInt(R.styleable.CustomGauge_gaugeDividerStep, 0);
-        setDividerDrawFirst(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true));
-        setDividerDrawLast(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true));
+        mDividerDrawFirst = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawFirst, true);
+        mDividerDrawLast = a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true);
 
         // calculating one point sweep
         mPointAngle = ((double) Math.abs(mSweepAngle) / (mEndValue - mStartValue));
@@ -90,13 +90,7 @@ public class CustomGauge extends View {
         mPaint.setColor(mStrokeColor);
         mPaint.setStrokeWidth(mStrokeWidth);
         mPaint.setAntiAlias(true);
-        if (!TextUtils.isEmpty(mStrokeCap)) {
-            if (mStrokeCap.equals("BUTT"))
-                mPaint.setStrokeCap(Paint.Cap.BUTT);
-            else if (mStrokeCap.equals("ROUND"))
-                mPaint.setStrokeCap(Paint.Cap.ROUND);
-        } else
-            mPaint.setStrokeCap(Paint.Cap.BUTT);
+        setStrokeCap(mStrokeCap, false);
         mPaint.setStyle(Paint.Style.STROKE);
         mRect = new RectF();
 
@@ -169,8 +163,11 @@ public class CustomGauge extends View {
         return mStrokeWidth;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeWidth(float strokeWidth) {
         mStrokeWidth = strokeWidth;
+        mPaint.setStrokeWidth(mStrokeWidth);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -178,8 +175,11 @@ public class CustomGauge extends View {
         return mStrokeColor;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeColor(int strokeColor) {
-        mStrokeColor = strokeColor;
+        mStrokeColor = ContextCompat.getColor(getContext(), strokeColor);;
+        mPaint.setColor(mStrokeColor);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -187,8 +187,22 @@ public class CustomGauge extends View {
         return mStrokeCap;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeCap(String strokeCap) {
+        setStrokeCap(strokeCap, true);
+    }
+
+    private void setStrokeCap(String strokeCap, boolean invalidate) {
         mStrokeCap = strokeCap;
+        if (!TextUtils.isEmpty(mStrokeCap)) {
+            if (mStrokeCap.equals("BUTT"))
+                mPaint.setStrokeCap(Paint.Cap.BUTT);
+            else if (mStrokeCap.equals("ROUND"))
+                mPaint.setStrokeCap(Paint.Cap.ROUND);
+        } else
+            mPaint.setStrokeCap(Paint.Cap.BUTT);
+        if (invalidate)
+            invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -232,8 +246,10 @@ public class CustomGauge extends View {
         return mPointSize;
     }
 
+    @SuppressWarnings("unused")
     public void setPointSize(int pointSize) {
         mPointSize = pointSize;
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -241,8 +257,10 @@ public class CustomGauge extends View {
         return mPointStartColor;
     }
 
+    @SuppressWarnings("unused")
     public void setPointStartColor(int pointStartColor) {
-        mPointStartColor = pointStartColor;
+        mPointStartColor = ContextCompat.getColor(getContext(), pointStartColor);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -250,8 +268,10 @@ public class CustomGauge extends View {
         return mPointEndColor;
     }
 
+    @SuppressWarnings("unused")
     public void setPointEndColor(int pointEndColor) {
-        mPointEndColor = pointEndColor;
+        mPointEndColor = ContextCompat.getColor(getContext(), pointEndColor);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -259,8 +279,10 @@ public class CustomGauge extends View {
         return mDividerColor;
     }
 
+    @SuppressWarnings("unused")
     public void setDividerColor(int dividerColor) {
-        mDividerColor = dividerColor;
+        mDividerColor = ContextCompat.getColor(getContext(), dividerColor);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -268,8 +290,10 @@ public class CustomGauge extends View {
         return mDividerDrawFirst;
     }
 
+    @SuppressWarnings("unused")
     public void setDividerDrawFirst(boolean dividerDrawFirst) {
         mDividerDrawFirst = dividerDrawFirst;
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -277,8 +301,10 @@ public class CustomGauge extends View {
         return mDividerDrawLast;
     }
 
+    @SuppressWarnings("unused")
     public void setDividerDrawLast(boolean dividerDrawLast) {
         mDividerDrawLast = dividerDrawLast;
+        invalidate();
     }
 
 }
