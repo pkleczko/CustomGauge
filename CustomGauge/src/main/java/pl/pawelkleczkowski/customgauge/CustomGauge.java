@@ -177,7 +177,7 @@ public class CustomGauge extends View {
 
     @SuppressWarnings("unused")
     public void setStrokeColor(int strokeColor) {
-        mStrokeColor = strokeColor;
+        mStrokeColor = ContextCompat.getColor(getContext(), strokeColor);;
         mPaint.setColor(mStrokeColor);
         invalidate();
     }
