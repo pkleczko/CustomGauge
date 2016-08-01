@@ -47,9 +47,9 @@ public class CustomGauge extends View {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomGauge, 0, 0);
 
         // stroke style
-        setStrokeWidth(a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10));
-        setStrokeColor(a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray)));
-        setStrokeCap(a.getString(R.styleable.CustomGauge_gaugeStrokeCap));
+        mStrokeWidth = a.getDimension(R.styleable.CustomGauge_gaugeStrokeWidth, 10);
+        mStrokeColor = a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+        mStrokeCap = a.getString(R.styleable.CustomGauge_gaugeStrokeCap);
 
         // angel start and sweep (opposite direction 0, 270, 180, 90)
         setStartAngel(a.getInt(R.styleable.CustomGauge_gaugeStartAngel, 0));
@@ -90,13 +90,7 @@ public class CustomGauge extends View {
         mPaint.setColor(mStrokeColor);
         mPaint.setStrokeWidth(mStrokeWidth);
         mPaint.setAntiAlias(true);
-        if (!TextUtils.isEmpty(mStrokeCap)) {
-            if (mStrokeCap.equals("BUTT"))
-                mPaint.setStrokeCap(Paint.Cap.BUTT);
-            else if (mStrokeCap.equals("ROUND"))
-                mPaint.setStrokeCap(Paint.Cap.ROUND);
-        } else
-            mPaint.setStrokeCap(Paint.Cap.BUTT);
+        setStrokeCap(mStrokeCap, false);
         mPaint.setStyle(Paint.Style.STROKE);
         mRect = new RectF();
 
@@ -169,8 +163,11 @@ public class CustomGauge extends View {
         return mStrokeWidth;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeWidth(float strokeWidth) {
         mStrokeWidth = strokeWidth;
+        mPaint.setStrokeWidth(mStrokeWidth);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -178,8 +175,11 @@ public class CustomGauge extends View {
         return mStrokeColor;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeColor(int strokeColor) {
         mStrokeColor = strokeColor;
+        mPaint.setColor(mStrokeColor);
+        invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -187,8 +187,22 @@ public class CustomGauge extends View {
         return mStrokeCap;
     }
 
+    @SuppressWarnings("unused")
     public void setStrokeCap(String strokeCap) {
+        setStrokeCap(strokeCap, true);
+    }
+
+    private void setStrokeCap(String strokeCap, boolean invalidate) {
         mStrokeCap = strokeCap;
+        if (!TextUtils.isEmpty(mStrokeCap)) {
+            if (mStrokeCap.equals("BUTT"))
+                mPaint.setStrokeCap(Paint.Cap.BUTT);
+            else if (mStrokeCap.equals("ROUND"))
+                mPaint.setStrokeCap(Paint.Cap.ROUND);
+        } else
+            mPaint.setStrokeCap(Paint.Cap.BUTT);
+        if (invalidate)
+            invalidate();
     }
 
     @SuppressWarnings("unused")
@@ -232,6 +246,7 @@ public class CustomGauge extends View {
         return mPointSize;
     }
 
+    @SuppressWarnings("unused")
     public void setPointSize(int pointSize) {
         mPointSize = pointSize;
         invalidate();
