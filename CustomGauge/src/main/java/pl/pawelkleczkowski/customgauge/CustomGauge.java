@@ -21,19 +21,19 @@ public class CustomGauge extends View {
     private int mStrokeColor;
     private RectF mRect;
     private String mStrokeCap;
-    private int mStartAngel;
-    private int mSweepAngel;
+    private int mStartAngle;
+    private int mSweepAngle;
     private int mStartValue;
     private int mEndValue;
     private int mValue;
-    private double mPointAngel;
+    private double mPointAngle;
     private int mPoint;
     private int mPointSize;
     private int mPointStartColor;
     private int mPointEndColor;
     private int mDividerColor;
     private int mDividerSize;
-    private int mDividerStepAngel;
+    private int mDividerStepAngle;
     private int mDividersCount;
     private boolean mDividerDrawFirst;
     private boolean mDividerDrawLast;
@@ -51,9 +51,9 @@ public class CustomGauge extends View {
         setStrokeColor(a.getColor(R.styleable.CustomGauge_gaugeStrokeColor, ContextCompat.getColor(context, android.R.color.darker_gray)));
         setStrokeCap(a.getString(R.styleable.CustomGauge_gaugeStrokeCap));
 
-        // angel start and sweep (opposite direction 0, 270, 180, 90)
-        setStartAngel(a.getInt(R.styleable.CustomGauge_gaugeStartAngel, 0));
-        setSweepAngel(a.getInt(R.styleable.CustomGauge_gaugeSweepAngel, 360));
+        // angle start and sweep (opposite direction 0, 270, 180, 90)
+        setStartAngle(a.getInt(R.styleable.CustomGauge_gaugeStartAngle, 0));
+        setSweepAngle(a.getInt(R.styleable.CustomGauge_gaugeSweepAngle, 360));
 
         // scale (from mStartValue to mEndValue)
         setStartValue(a.getInt(R.styleable.CustomGauge_gaugeStartValue, 0));
@@ -72,13 +72,13 @@ public class CustomGauge extends View {
         setDividerDrawLast(a.getBoolean(R.styleable.CustomGauge_gaugeDividerDrawLast, true));
 
         // calculating one point sweep
-        mPointAngel = ((double) Math.abs(mSweepAngel) / (mEndValue - mStartValue));
+        mPointAngle = ((double) Math.abs(mSweepAngle) / (mEndValue - mStartValue));
 
         // calculating divider step
         if (dividerSize > 0) {
-            mDividerSize = mSweepAngel / (Math.abs(mEndValue - mStartValue) / dividerSize);
+            mDividerSize = mSweepAngle / (Math.abs(mEndValue - mStartValue) / dividerSize);
             mDividersCount = 100 / dividerStep;
-            mDividerStepAngel = mSweepAngel / mDividersCount;
+            mDividerStepAngle = mSweepAngle / mDividersCount;
         }
         a.recycle();
         init();
@@ -101,7 +101,7 @@ public class CustomGauge extends View {
         mRect = new RectF();
 
         mValue = mStartValue;
-        mPoint = mStartAngel;
+        mPoint = mStartAngle;
     }
 
     @Override
@@ -124,11 +124,11 @@ public class CustomGauge extends View {
 
         mPaint.setColor(mStrokeColor);
         mPaint.setShader(null);
-        canvas.drawArc(mRect, mStartAngel, mSweepAngel, false, mPaint);
+        canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
         mPaint.setColor(mPointStartColor);
         mPaint.setShader(new LinearGradient(getWidth(), getHeight(), 0, 0, mPointEndColor, mPointStartColor, Shader.TileMode.CLAMP));
         if (mPointSize>0) {//if size of pointer is defined
-            if (mPoint > mStartAngel + mPointSize/2) {
+            if (mPoint > mStartAngle + mPointSize/2) {
                 canvas.drawArc(mRect, mPoint - mPointSize/2, mPointSize, false, mPaint);
             }
             else { //to avoid excedding start/zero point
@@ -137,9 +137,9 @@ public class CustomGauge extends View {
         }
         else { //draw from start point to value point (long pointer)
             if (mValue==mStartValue) //use non-zero default value for start point (to avoid lack of pointer for start/zero value)
-                canvas.drawArc(mRect, mStartAngel, DEFAULT_LONG_POINTER_SIZE, false, mPaint);
+                canvas.drawArc(mRect, mStartAngle, DEFAULT_LONG_POINTER_SIZE, false, mPaint);
             else
-                canvas.drawArc(mRect, mStartAngel, mPoint - mStartAngel, false, mPaint);
+                canvas.drawArc(mRect, mStartAngle, mPoint - mStartAngle, false, mPaint);
         }
 
         if (mDividerSize > 0) {
@@ -148,7 +148,7 @@ public class CustomGauge extends View {
             int i = mDividerDrawFirst ? 0 : 1;
             int max = mDividerDrawLast ? mDividersCount + 1 : mDividersCount;
             for (; i < max; i++) {
-                canvas.drawArc(mRect, mStartAngel + i*mDividerStepAngel, mDividerSize, false, mPaint);
+                canvas.drawArc(mRect, mStartAngle + i* mDividerStepAngle, mDividerSize, false, mPaint);
             }
         }
 
@@ -156,7 +156,7 @@ public class CustomGauge extends View {
 
     public void setValue(int value) {
         mValue = value;
-        mPoint = (int) (mStartAngel + (mValue-mStartValue) * mPointAngel);
+        mPoint = (int) (mStartAngle + (mValue-mStartValue) * mPointAngle);
         invalidate();
     }
 
@@ -192,21 +192,21 @@ public class CustomGauge extends View {
     }
 
     @SuppressWarnings("unused")
-    public int getStartAngel() {
-        return mStartAngel;
+    public int getStartAngle() {
+        return mStartAngle;
     }
 
-    public void setStartAngel(int startAngel) {
-        mStartAngel = startAngel;
+    public void setStartAngle(int startAngle) {
+        mStartAngle = startAngle;
     }
 
     @SuppressWarnings("unused")
-    public int getSweepAngel() {
-        return mSweepAngel;
+    public int getSweepAngle() {
+        return mSweepAngle;
     }
 
-    public void setSweepAngel(int sweepAngel) {
-        mSweepAngel = sweepAngel;
+    public void setSweepAngle(int sweepAngle) {
+        mSweepAngle = sweepAngle;
     }
 
     @SuppressWarnings("unused")
