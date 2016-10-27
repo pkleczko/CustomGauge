@@ -1,3 +1,5 @@
+package pl.pawelkleczkowski.customgauge;
+
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -9,8 +11,6 @@ import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.view.View;
-
-import com.grupoarelance.brisa.R;
 
 public class CustomGauge extends View {
 
