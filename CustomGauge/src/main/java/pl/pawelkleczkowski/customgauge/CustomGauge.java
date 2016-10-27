@@ -107,18 +107,19 @@ public class CustomGauge extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        float paddingLeft = getPaddingLeft();
-        float paddingRight= getPaddingRight();
-        float paddingTop = getPaddingTop();
-        float paddingBottom = getPaddingBottom();
-        float width = getWidth() - (paddingLeft+paddingRight);
-        float height = getHeight() - (paddingTop+paddingBottom);
-        float radius = (width > height ? width/2 : height/2);
+        float padding = getStrokeWidth();
+        float size = getWidth()<getHeight() ? getWidth() : getHeight();
+        float width = size - (2*padding);
+        float height = size - (2*padding);
+//        float radius = (width > height ? width/2 : height/2);
+        float radius = (width < height ? width/2 : height/2);
 
-        float rectLeft = width/2 - radius + paddingLeft;
-        float rectTop = height/2 - radius + paddingTop;
-        float rectRight = width/2 - radius + paddingLeft + width;
-        float rectBottom = height/2 - radius + paddingTop + height;
+
+
+        float rectLeft = (getWidth() - (2*padding))/2 - radius + padding;
+        float rectTop = (getHeight() - (2*padding))/2 - radius + padding;
+        float rectRight = (getWidth() - (2*padding))/2 - radius + padding + width;
+        float rectBottom = (getHeight() - (2*padding))/2 - radius + padding + height;
 
         mRect.set(rectLeft, rectTop, rectRight, rectBottom);
 
