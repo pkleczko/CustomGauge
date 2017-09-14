@@ -226,6 +226,8 @@ public class CustomGauge extends View {
 
     public void setEndValue(int endValue) {
         mEndValue = endValue;
+        mPointAngle = ((double) Math.abs(mSweepAngle) / (mEndValue - mStartValue));
+        invalidate();
     }
 
     @SuppressWarnings("unused")
