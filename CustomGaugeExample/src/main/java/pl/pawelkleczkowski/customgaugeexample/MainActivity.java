@@ -26,16 +26,20 @@ public class MainActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
-		Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+		Toolbar toolbar = findViewById(R.id.toolbar);
 		toolbar.setTitle(getString(R.string.app_name));
 		setSupportActionBar(toolbar);
 
-		Button button = (Button) findViewById(R.id.button);
-		gauge1 = (CustomGauge) findViewById(R.id.gauge1);
-		gauge2 = (CustomGauge) findViewById(R.id.gauge2);
-		gauge3 = (CustomGauge) findViewById(R.id.gauge3);
-		text1  = (TextView) findViewById(R.id.textView1);
-		text2  = (TextView) findViewById(R.id.textView2);
+		Button button = findViewById(R.id.button);
+		gauge1 = findViewById(R.id.gauge1);
+		gauge2 = findViewById(R.id.gauge2);
+		gauge3 = findViewById(R.id.gauge3);
+
+		gauge1.setEndValue(10000);
+		gauge2.setEndValue(700);
+
+		text1  = findViewById(R.id.textView1);
+		text2  = findViewById(R.id.textView2);
 		text1.setText(Integer.toString(gauge1.getValue()));
 		text2.setText(Integer.toString(gauge2.getValue()));
     	text2.setText(Integer.toString(gauge2.getValue()));
@@ -54,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
 			                        	gauge1.setValue(i*10);
 			                        	gauge2.setValue(200 + i*5);
 			                        	gauge3.setValue(i);
-			                        	text1.setText(Integer.toString(gauge1.getValue()));
-			                        	text2.setText(Integer.toString(gauge3.getValue()));
+			                        	text1.setText(Integer.toString(gauge1.getEndValue()));
+			                        	text2.setText(Integer.toString(gauge2.getEndValue()));
 			                        }
 			                    });
 			                    Thread.sleep(50);
@@ -65,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 			            }
 			        }
 			    }.start();
+
 			}
 
 		});
