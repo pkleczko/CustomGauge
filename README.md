@@ -3,7 +3,10 @@ CustomGauge with light effect animation
 
 Original library: https://github.com/pkleczko/CustomGauge
 
-## for enabling light effect animation just call this method
+&nbsp;
+
+
+#### for enabling light effect animation just call this method
 
       gauge2.setLightEffect(true);
 
