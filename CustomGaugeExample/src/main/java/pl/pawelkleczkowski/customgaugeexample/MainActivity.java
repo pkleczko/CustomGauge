@@ -43,7 +43,9 @@ public class MainActivity extends AppCompatActivity {
 		text1.setText(Integer.toString(gauge1.getValue()));
 		text2.setText(Integer.toString(gauge2.getValue()));
     	text2.setText(Integer.toString(gauge2.getValue()));
-    	
+
+    	gauge2.setLightEffect(true);
+
 		button.setOnClickListener(new OnClickListener() {
 			
 			@Override

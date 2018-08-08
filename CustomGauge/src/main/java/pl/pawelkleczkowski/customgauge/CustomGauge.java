@@ -1,5 +1,6 @@
 package pl.pawelkleczkowski.customgauge;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -10,7 +11,10 @@ import android.graphics.Shader;
 import android.support.v4.content.ContextCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
+
+import static pl.pawelkleczkowski.customgauge.Utils.convertIntegers;
 
 public class CustomGauge extends View {
 
@@ -37,6 +41,9 @@ public class CustomGauge extends View {
     private int mDividersCount;
     private boolean mDividerDrawFirst;
     private boolean mDividerDrawLast;
+
+    private boolean mLightEffectActive = false;
+    LightEffect mLightEffect = null;
 
     public CustomGauge(Context context) {
         super(context);
@@ -104,6 +111,13 @@ public class CustomGauge extends View {
         mPoint = mStartAngle;
     }
 
+    public void setLightEffect(boolean mLightEffect) {
+        this.mLightEffectActive = mLightEffect;
+        if(mLightEffect){
+            this.mLightEffect = new LightEffect(mPointStartColor, mPointEndColor);
+        }
+    }
+
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
@@ -127,7 +141,13 @@ public class CustomGauge extends View {
         mPaint.setShader(null);
         canvas.drawArc(mRect, mStartAngle, mSweepAngle, false, mPaint);
         mPaint.setColor(mPointStartColor);
-        mPaint.setShader(new LinearGradient(getWidth(), getHeight(), 0, 0, mPointEndColor, mPointStartColor, Shader.TileMode.CLAMP));
+
+        if(mLightEffectActive){
+            mLightEffect.renderGradient(mPaint, getWidth(), getHeight());
+        } else {
+            mPaint.setShader(new LinearGradient(getWidth(), getHeight(), 0, 0, mPointEndColor, mPointStartColor, Shader.TileMode.CLAMP));
+        }
+
         if (mPointSize>0) {//if size of pointer is defined
             if (mPoint > mStartAngle + mPointSize/2) {
                 canvas.drawArc(mRect, mPoint - mPointSize/2, mPointSize, false, mPaint);
@@ -153,6 +173,7 @@ public class CustomGauge extends View {
             }
         }
 
+        if(mLightEffectActive) invalidate();
     }
 
     public void setValue(int value) {
