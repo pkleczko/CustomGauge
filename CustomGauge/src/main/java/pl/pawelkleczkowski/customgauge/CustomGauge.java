@@ -284,5 +284,10 @@ public class CustomGauge extends View {
         mDividerDrawLast = dividerDrawLast;
     }
 
-
+    public void setDividerStep(int dividerStep){
+        if (dividerStep > 0) {
+            mDividersCount = 100 / dividerStep;
+            mDividerStepAngle = mSweepAngle / mDividersCount;
+        }
+    }
 }
