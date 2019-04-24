@@ -190,6 +190,13 @@ public class CustomGauge extends View {
 
     public void setStrokeCap(String strokeCap) {
         mStrokeCap = strokeCap;
+        if(mPaint != null) {
+            if (mStrokeCap.equals("BUTT")) {
+                mPaint.setStrokeCap(Paint.Cap.BUTT);
+            } else if (mStrokeCap.equals("ROUND")) {
+                mPaint.setStrokeCap(Paint.Cap.ROUND);
+            }
+        }
     }
 
     @SuppressWarnings("unused")
