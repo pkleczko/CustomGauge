@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity {
 			                        	gauge3.setValue(i);
 			                        	text1.setText(Integer.toString(gauge1.getEndValue()));
 			                        	text2.setText(Integer.toString(gauge2.getEndValue()));
+			                        	gauge3.setDividerSize(3);
 			                        }
 			                    });
 			                    Thread.sleep(50);

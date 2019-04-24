@@ -290,4 +290,10 @@ public class CustomGauge extends View {
             mDividerStepAngle = mSweepAngle / mDividersCount;
         }
     }
+
+    public void setDividerSize(int dividerSize) {
+        if (dividerSize > 0) {
+            mDividerSize = mSweepAngle / (Math.abs(mEndValue - mStartValue) / dividerSize);
+        }
+    }
 }
