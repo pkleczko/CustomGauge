@@ -190,6 +190,13 @@ public class CustomGauge extends View {
 
     public void setStrokeCap(String strokeCap) {
         mStrokeCap = strokeCap;
+        if(mPaint != null) {
+            if (mStrokeCap.equals("BUTT")) {
+                mPaint.setStrokeCap(Paint.Cap.BUTT);
+            } else if (mStrokeCap.equals("ROUND")) {
+                mPaint.setStrokeCap(Paint.Cap.ROUND);
+            }
+        }
     }
 
     @SuppressWarnings("unused")
@@ -284,5 +291,16 @@ public class CustomGauge extends View {
         mDividerDrawLast = dividerDrawLast;
     }
 
+    public void setDividerStep(int dividerStep){
+        if (dividerStep > 0) {
+            mDividersCount = 100 / dividerStep;
+            mDividerStepAngle = mSweepAngle / mDividersCount;
+        }
+    }
 
+    public void setDividerSize(int dividerSize) {
+        if (dividerSize > 0) {
+            mDividerSize = mSweepAngle / (Math.abs(mEndValue - mStartValue) / dividerSize);
+        }
+    }
 }
