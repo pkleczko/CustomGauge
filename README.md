@@ -18,7 +18,7 @@ Simple gauge view
 }
 
 <span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3<span class="pl-pds">'</span></span>
+    implementation <span class="pl-s"><span class="pl-pds">'</span>pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3<span class="pl-pds">'</span></span>
 }</pre></div>
  * Add "pl.pawelkleczkowski.customgauge.CustomGauge" view in your layout (example below)
  * Find CustomGauge view in your activity and use methods "setValue()" and "getValue()" to manage view
