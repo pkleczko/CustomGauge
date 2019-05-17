@@ -18,7 +18,7 @@ Simple gauge view
 }
 
 <span class="pl-en">dependencies</span> {
-    compile <span class="pl-s"><span class="pl-pds">'</span>pl.pawelkleczkowski.customgauge:CustomGauge:1.0.3<span class="pl-pds">'</span></span>
+    compile <span class="pl-s"><span class="pl-pds">'</span>pl.pawelkleczkowski.customgauge:CustomGauge:1.0.4<span class="pl-pds">'</span></span>
 }</pre></div>
  * Add "pl.pawelkleczkowski.customgauge.CustomGauge" view in your layout (example below)
  * Find CustomGauge view in your activity and use methods "setValue()" and "getValue()" to manage view
@@ -49,45 +49,45 @@ Available view attributes:
 
     
     <pl.pawelkleczkowski.customgauge.CustomGauge
-        android:id="@+id/gauge1"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/button"
-        android:paddingBottom="20dp"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="20dp"
-        gauge:pointStartColor="@color/Red"
-        gauge:pointEndColor="@color/Red"
-        gauge:pointSize="6"
-        gauge:startAngel="135"
-        gauge:strokeCap="ROUND"
-        gauge:strokeColor="@color/Gray"
-        gauge:strokeWidth="10dp"
-        gauge:startValue="0"
-        gauge:endValue="1000"    
-        gauge:sweepAngel="270" />
-
-    <pl.pawelkleczkowski.customgauge.CustomGauge
-        android:id="@+id/gauge2"
-        android:layout_width="140dp"
-        android:layout_height="140dp"
-        android:layout_below="@+id/gauge1"
-        android:layout_centerHorizontal="true"
-        android:paddingBottom="10dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        gauge:endValue="800"
-        gauge:pointEndColor="@color/DarkBlue"
-        gauge:pointStartColor="@color/LightSkyBlue"
-        gauge:startAngel="135"
-        gauge:startValue="200"
-        gauge:strokeCap="ROUND"
-        gauge:strokeColor="@color/Gray"
-        gauge:strokeWidth="10dp"
-        gauge:sweepAngel="270" />
+            android:id="@+id/gauge1"
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/button"
+            android:paddingBottom="20dp"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp"
+            android:paddingTop="20dp"
+            app:gaugePointStartColor="@color/md_red_500"
+            app:gaugePointEndColor="@color/md_red_500"
+            app:gaugePointSize="6"
+            app:gaugeStartAngle="135"
+            app:gaugeStrokeCap="ROUND"
+            app:gaugeStrokeColor="@color/md_grey_400"
+            app:gaugeStrokeWidth="10dp"
+            app:gaugeStartValue="0"
+            app:gaugeEndValue="1000"
+            app:gaugeSweepAngle="270" />
+    
+        <pl.pawelkleczkowski.customgauge.CustomGauge
+            android:id="@+id/gauge2"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:layout_below="@+id/gauge1"
+            android:layout_centerHorizontal="true"
+            android:paddingBottom="10dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="10dp"
+            app:gaugeEndValue="800"
+            app:gaugePointEndColor="@color/md_blue_800"
+            app:gaugePointStartColor="@color/md_blue_300"
+            app:gaugeStartAngle="135"
+            app:gaugeStartValue="200"
+            app:gaugeStrokeCap="ROUND"
+            app:gaugeStrokeColor="@color/md_grey_400"
+            app:gaugeStrokeWidth="10dp"
+            app:gaugeSweepAngle="270" />
 
 &nbsp;
 
