@@ -1,5 +1,7 @@
 package pl.pawelkleczkowski.customgaugeexample;
 
+import java.util.Locale;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -35,22 +37,25 @@ public class MainActivity extends AppCompatActivity {
 		gauge2 = findViewById(R.id.gauge2);
 		gauge3 = findViewById(R.id.gauge3);
 
-		gauge1.setEndValue(10000);
-		gauge2.setEndValue(700);
-
 		text1  = findViewById(R.id.textView1);
 		text2  = findViewById(R.id.textView2);
-		text1.setText(Integer.toString(gauge1.getValue()));
-		text2.setText(Integer.toString(gauge2.getValue()));
-    	text2.setText(Integer.toString(gauge2.getValue()));
+		text1.setText(String.valueOf(gauge1.getValue()));
+		text2.setText(String.valueOf(gauge2.getValue()));
+    	text2.setText(String.valueOf(gauge2.getValue()));
     	
 		button.setOnClickListener(new OnClickListener() {
 			
 			@Override
 			public void onClick(View v) {
+				gauge2.setEndValue(800);
+				gauge2.setValue(200);
+				text2.setText(String.format(Locale.getDefault(), "%1d/%2d", gauge2.getValue(), gauge2.getEndValue()));
 				new Thread() {
 			        public void run() {
 			        	for (i=0;i<100;i++) {
+					        if (i == 50) {
+						        gauge2.setEndValue(1200);
+					        }
 			                try {
 			                    runOnUiThread(new Runnable() {
 			                        @Override
@@ -58,8 +63,8 @@ public class MainActivity extends AppCompatActivity {
 			                        	gauge1.setValue(i*10);
 			                        	gauge2.setValue(200 + i*5);
 			                        	gauge3.setValue(i);
-			                        	text1.setText(Integer.toString(gauge1.getEndValue()));
-			                        	text2.setText(Integer.toString(gauge2.getEndValue()));
+			                        	text1.setText(String.valueOf(gauge1.getValue()));
+			                        	text2.setText(String.format(Locale.getDefault(), "%1d/%2d", gauge2.getValue(), gauge2.getEndValue()));
 			                        }
 			                    });
 			                    Thread.sleep(50);
@@ -69,20 +74,8 @@ public class MainActivity extends AppCompatActivity {
 			            }
 			        }
 			    }.start();
-
 			}
-
 		});
-	}
-	
-	@Override
-	public void onAttachedToWindow() {
-		super.onAttachedToWindow();
-	}
-	
-	@Override
-	protected void onResume() {
-		super.onResume();
 	}
 	
 }

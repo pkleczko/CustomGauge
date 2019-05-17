@@ -9,6 +9,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:titleTextColor="@android:color/white"
         android:background="?attr/colorPrimary"
         />
     
@@ -17,7 +18,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/toolbar"
-        android:text="Click" />
+        android:text="Test" />
 
     <pl.pawelkleczkowski.customgauge.CustomGauge
         android:id="@+id/gauge1"
@@ -47,7 +48,7 @@
         android:layout_alignBottom="@+id/gauge1"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="18dp"
-        android:text="256"
+        android:text="0/800"
         android:textSize="30dp"
         android:textStyle="bold" />
 
@@ -106,9 +107,8 @@
         android:layout_alignBottom="@+id/gauge2"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="48dp"
-        android:text="0"
-        android:textSize="30dp"
+        android:text="200/1200"
+        android:textSize="20dp"
         android:textStyle="bold" />
-
 
 </RelativeLayout>
