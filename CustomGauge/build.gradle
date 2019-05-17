@@ -19,18 +19,17 @@ ext {
     developerName = 'Pawel Kleczkowski'
     developerEmail = 'contact@pawelkleczkowski.pl'
 
-    licenseName = 'GNU GENERAL PUBLIC LICENSE Version 2, June 1991'
+    licenseName = 'Apache License 2.0'
     licenseUrl = 'https://github.com/pkleczko/CustomGauge/blob/master/LICENSE'
-    allLicenses = ["GPL-2.0"]
+    allLicenses = ["APACHE-2.0"]
 }
 
 android {
-    compileSdkVersion 27
-    buildToolsVersion "27.0.0"
+    compileSdkVersion 28
 
     defaultConfig {
         minSdkVersion 15
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 3
         versionName "1.0.3"
     }
@@ -43,8 +42,8 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:27.0.2'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.android.support:appcompat-v7:28.0.0'
 }
 
 apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
